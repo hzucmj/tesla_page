@@ -1,0 +1,355 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #121212;
+    padding: 20px;
+    color: #fff;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 70px;
+}
+
+h1 {
+    text-align: center;
+    color: #1a73e8;
+    margin-bottom: 30px;
+}
+
+.add-form {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+    display: flex;
+    gap: 10px;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #404040;
+    border-radius: 4px;
+    flex: 1;
+    background-color: #2d2d2d;
+    color: #fff;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1557b0;
+}
+
+.bookmarks-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.bookmark-card {
+    background: #1e1e1e;
+    padding: 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    position: relative;
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.bookmark-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+/* 修改背景图标样式 */
+.bookmark-card-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.15;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+    filter: blur(1px);
+    overflow: hidden;
+}
+
+/* 修改卡片内容容器样式 */
+.bookmark-card-content {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+/* 修改卡片标题样式 */
+.bookmark-card h3 {
+    margin: 0;
+    color: #fff;
+    font-size: 2.2em;
+    line-height: 1.3;
+    text-align: center;
+    max-width: 90%;
+    word-wrap: break-word;
+    padding: 0 25px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* 隐藏链接URL */
+.bookmark-card a {
+    display: none;
+}
+
+/* 修改删除按钮样式 */
+.delete-btn {
+    position: static;
+    margin: -1px -1px 0 0;
+    background-color: rgba(60, 60, 60, 0.9);
+}
+
+/* 确保删除按钮不触发卡片的悬停效果 */
+.delete-btn:hover {
+    background-color: rgba(80, 80, 80, 0.9);
+    transform: none;
+    cursor: pointer;
+}
+
+/* 移除卡片悬停时的按钮显示效果 */
+.bookmark-card:hover .delete-btn {
+    opacity: 1;
+}
+
+/* 添加卡片样式 */
+.add-card {
+    background: #1e1e1e;
+    padding: 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed #505050;
+    background-color: rgba(50, 50, 50, 0.05);
+}
+
+.add-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    background-color: rgba(50, 50, 50, 0.1);
+}
+
+.add-card .plus-icon {
+    font-size: 3em;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.add-card .add-text {
+    color: #999;
+    font-size: 1.2em;
+}
+
+/* 移除旧的添加按钮样式 */
+.add-button-container,
+.add-button {
+    display: none;
+}
+
+/* 模态框样式 */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    background-color: #1e1e1e;
+    margin: 100px auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #fff;
+}
+
+.modal h2 {
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.cancel-btn {
+    background-color: #6c757d;
+}
+
+.cancel-btn:hover {
+    background-color: #5a6268;
+}
+
+/* 修改分类标签样式 */
+.category-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px 0;
+    border-bottom: 1px solid #333;
+    background-color: rgba(30, 30, 30, 0.95);
+    backdrop-filter: blur(5px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.tab-btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: #2d2d2d;
+    color: #999;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+    background-color: #3d3d3d;
+}
+
+.tab-btn.active {
+    background-color: #505050;
+    color: #fff;
+}
+
+/* 调整选项栏内容的最大宽度，与容器保持一致 */
+.category-tabs > div {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 20px;
+}
+
+/* 修改表单select样式 */
+select {
+    padding: 10px;
+    border: 1px solid #404040;
+    border-radius: 4px;
+    background-color: #2d2d2d;
+    font-size: 16px;
+    color: #fff;
+}
+
+select:focus {
+    outline: none;
+    border-color: #505050;
+}
+
+/* 修改卡片按钮容器样式 */
+.card-buttons {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    gap: 1px;
+    z-index: 3;
+}
+
+/* 统一按钮基础样式 */
+.edit-btn,
+.delete-btn {
+    width: auto;
+    min-width: 50px;
+    height: 32px;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+    font-size: 14px;
+    opacity: 1;
+    color: white;
+    cursor: pointer;
+    margin: -1px 0 0 0;
+    background-color: rgba(60, 60, 60, 0.9);
+}
+
+/* 编辑按钮特定样式 */
+.edit-btn:hover,
+.delete-btn:hover {
+    background-color: rgba(80, 80, 80, 0.9);
+    transform: none;
+}
+
+/* 默认书签卡片样式 */
+.bookmark-card.default-bookmark {
+    border: 2px solid rgba(80, 80, 80, 0.2);
+}
+
+.bookmark-card.default-bookmark::after {
+    content: '默认';
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-size: 12px;
+    color: #999;
+    background: rgba(80, 80, 80, 0.2);
+    padding: 2px 6px;
+    border-radius: 4px;
+    z-index: 3;
+}
+
+/* 修改选择框选项颜色 */
+select option {
+    background-color: #2d2d2d;
+    color: #fff;
+} 

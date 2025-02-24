@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>收藏夹</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 简化分类标签容器 -->
+        <div class="category-tabs">
+            <!-- 分类标签将通过 JS 动态生成 -->
+        </div>
+
+        <div id="bookmarks" class="bookmarks-container">
+            <!-- 书签卡片将在这里动态生成 -->
+        </div>
+    </div>
+
+    <div id="addModal" class="modal">
+        <div class="modal-content">
+            <h2>添加新收藏</h2>
+            <div class="modal-form">
+                <input type="text" id="linkTitle" placeholder="输入标题" required>
+                <input type="url" id="linkUrl" placeholder="输入链接地址" required>
+                <select id="linkCategory" required>
+                    <option value="">选择类别</option>
+                    <!-- 分类选项将通过 JS 动态生成 -->
+                </select>
+                <div class="modal-buttons">
+                    <button onclick="addBookmark()">保存</button>
+                    <button onclick="closeModal()" class="cancel-btn">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <h2>编辑收藏</h2>
+            <div class="modal-form">
+                <input type="text" id="editLinkTitle" placeholder="输入标题" required>
+                <input type="url" id="editLinkUrl" placeholder="输入链接地址" required>
+                <select id="editLinkCategory" required>
+                    <option value="">选择类别</option>
+                    <!-- 分类选项将通过 JS 动态生成 -->
+                </select>
+                <div class="modal-buttons">
+                    <button onclick="updateBookmark()">保存</button>
+                    <button onclick="closeEditModal()" class="cancel-btn">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
