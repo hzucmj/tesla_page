@@ -90,6 +90,12 @@ const defaultBookmarks = [
         url: 'https://kimi.moonshot.cn/',
         category: 'ai',
         isDefault: true
+    },
+    {
+        title: '夸克网盘',
+        url: 'https://pan.quark.cn/',
+        category: 'other',
+        isDefault: true
     }
 ];
 
