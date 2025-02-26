@@ -21,13 +21,15 @@ const defaultBookmarks = [
         title: '奈飞工厂',
         url: 'https://www.netflixgc.com',
         category: 'video',
-        isDefault: true
+        isDefault: true,
+        bgImage: 'https://img02.sogoucdn.com/v2/thumb/retype_exclude_gif/ext/auto/q/95/crop/xy/ai/t/0/?appid=122&url=https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2915770669.jpg'  // 可选的背景图片
     },
     {
         title: '奈菲影视',
         url: 'https://www.nfyingshi.com/',
         category: 'video',
-        isDefault: true
+        isDefault: true,
+        bgImage: 'https://pic.imgdb.cn/item/62e67f7d8c61dc3b8e024fb7.jpg'
     },
     {
         title: '统一影视TV',
@@ -139,11 +141,17 @@ function loadBookmarks() {
         // 修改背景图标元素创建
         const bgIcon = document.createElement('div');
         bgIcon.className = 'bookmark-card-bg';
-        const faviconUrl = getFaviconUrl(bookmark.url);
-        if (faviconUrl) {
-            bgIcon.style.backgroundImage = `url('${faviconUrl}')`;
+        
+        // 优先使用配置的背景图片，没有则使用 favicon
+        if (bookmark.bgImage) {
+            bgIcon.style.backgroundImage = `url('${bookmark.bgImage}')`;
         } else {
-            bgIcon.style.backgroundColor = getRandomColor();
+            const faviconUrl = getFaviconUrl(bookmark.url);
+            if (faviconUrl) {
+                bgIcon.style.backgroundImage = `url('${faviconUrl}')`;
+            } else {
+                bgIcon.style.backgroundColor = getRandomColor();
+            }
         }
         
         card.appendChild(bgIcon);
@@ -205,10 +213,12 @@ function closeModal() {
 function addBookmark() {
     const titleInput = document.getElementById('linkTitle');
     const urlInput = document.getElementById('linkUrl');
+    const bgImageInput = document.getElementById('linkBgImage');
     const categoryInput = document.getElementById('linkCategory');
     
     const title = titleInput.value.trim();
     const url = urlInput.value.trim();
+    const bgImage = bgImageInput.value.trim();
     const category = categoryInput.value;
 
     if (!title || !url || !category) {
@@ -224,7 +234,7 @@ function addBookmark() {
     }
 
     const bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
-    bookmarks.push({ title, url, category });
+    bookmarks.push({ title, url, category, bgImage });
     localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
 
     closeModal();
@@ -267,12 +277,10 @@ function showEditModal(index) {
     // 填充表单
     document.getElementById('editLinkTitle').value = bookmark.title;
     document.getElementById('editLinkUrl').value = bookmark.url;
+    document.getElementById('editLinkBgImage').value = bookmark.bgImage || '';
     document.getElementById('editLinkCategory').value = bookmark.category;
     
-    // 显示模态框
     document.getElementById('editModal').style.display = 'block';
-    
-    // 阻止事件冒泡，防止触发卡片的点击事件
     event.stopPropagation();
 }
 
@@ -284,10 +292,12 @@ function closeEditModal() {
 function updateBookmark() {
     const titleInput = document.getElementById('editLinkTitle');
     const urlInput = document.getElementById('editLinkUrl');
+    const bgImageInput = document.getElementById('editLinkBgImage');
     const categoryInput = document.getElementById('editLinkCategory');
     
     const title = titleInput.value.trim();
     const url = urlInput.value.trim();
+    const bgImage = bgImageInput.value.trim();
     const category = categoryInput.value;
 
     if (!title || !url || !category) {
@@ -303,7 +313,7 @@ function updateBookmark() {
     }
 
     const bookmarks = JSON.parse(localStorage.getItem('bookmarks')) || [];
-    bookmarks[currentEditIndex] = { title, url, category };
+    bookmarks[currentEditIndex] = { title, url, category, bgImage };
     localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
 
     closeEditModal();

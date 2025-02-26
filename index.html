@@ -44,14 +44,42 @@
 <body>
     <a href="#" class="tesla-btn" id="teslaLink">跳转全屏</a>
 
+    <div class="modal-form">
+        <input type="text" id="linkTitle" placeholder="输入标题" required>
+        <input type="url" id="linkUrl" placeholder="输入链接地址" required>
+        <input type="url" id="linkBgImage" placeholder="背景图片地址（可选）">
+        <select id="linkCategory" required>
+            <!-- ... existing options ... -->
+        </select>
+        <!-- ... rest of the form ... -->
+    </div>
+
+    <!-- 编辑模态框也需要添加相同的字段 -->
+    <div class="modal-form">
+        <input type="text" id="editLinkTitle" placeholder="输入标题" required>
+        <input type="url" id="editLinkUrl" placeholder="输入链接地址" required>
+        <input type="url" id="editLinkBgImage" placeholder="背景图片地址（可选）">
+        <select id="editLinkCategory" required>
+            <!-- ... existing options ... -->
+        </select>
+        <!-- ... rest of the form ... -->
+    </div>
+
     <script>
-        document.getElementById('teslaLink').addEventListener('click', function(e) {
-            e.preventDefault();
-            const timestamp = Date.now();
-            const encodedUrl = encodeURIComponent('https://gitee.com');
-            const redirectUrl = `https://v.qq.com/search_redirect.html?url=https://www.baomihua.com/go.aspx?url=${encodedUrl}?baomihua.com=${timestamp}`;
-            window.location.href = redirectUrl;
-        });
+        // 检查 UserAgent 是否包含 tesla
+        if (!navigator.userAgent.toLowerCase().includes('tesla')) {
+            window.location.href = './nav.html';
+        } else {
+            document.getElementById('teslaLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                const timestamp = Date.now();
+                
+                // Tesla 浏览器使用重定向模式
+                const encodedUrl = encodeURIComponent('https://hzucmj.github.io/tesla_page/nav.html');
+                const redirectUrl = `https://v.qq.com/search_redirect.html?url=https://www.1905.com/api/redirec.html?redirect_url=${encodedUrl}?www.1905.com`;
+                window.location.href = redirectUrl;
+            });
+        }
     </script>
 </body>
 </html> 
