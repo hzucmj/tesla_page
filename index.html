@@ -44,27 +44,6 @@
 <body>
     <a href="#" class="tesla-btn" id="teslaLink">跳转全屏</a>
 
-    <div class="modal-form">
-        <input type="text" id="linkTitle" placeholder="输入标题" required>
-        <input type="url" id="linkUrl" placeholder="输入链接地址" required>
-        <input type="url" id="linkBgImage" placeholder="背景图片地址（可选）">
-        <select id="linkCategory" required>
-            <!-- ... existing options ... -->
-        </select>
-        <!-- ... rest of the form ... -->
-    </div>
-
-    <!-- 编辑模态框也需要添加相同的字段 -->
-    <div class="modal-form">
-        <input type="text" id="editLinkTitle" placeholder="输入标题" required>
-        <input type="url" id="editLinkUrl" placeholder="输入链接地址" required>
-        <input type="url" id="editLinkBgImage" placeholder="背景图片地址（可选）">
-        <select id="editLinkCategory" required>
-            <!-- ... existing options ... -->
-        </select>
-        <!-- ... rest of the form ... -->
-    </div>
-
     <script>
         // 检查 UserAgent 是否包含 tesla
         if (!navigator.userAgent.toLowerCase().includes('tesla')) {
