@@ -54,8 +54,9 @@
                 const timestamp = Date.now();
                 
                 // Tesla 浏览器使用重定向模式
-                const encodedUrl = encodeURIComponent('https://hzucmj.github.io/tesla_page/nav.html');
-                const redirectUrl = `https://v.qq.com/search_redirect.html?url=https://www.1905.com/api/redirec.html?redirect_url=${encodedUrl}?www.1905.com`;
+                const targetUrl = 'https://hzucmj.github.io/tesla_page/nav.html';
+                const encodedUrl = encodeURIComponent(targetUrl);
+                const redirectUrl = `https://v.qq.com/search_redirect.html?url=https://www.1905.com/api/redirec.html?redirect_url=${targetUrl}?www.1905.com`;
                 window.location.href = redirectUrl;
             });
         }
