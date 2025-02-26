@@ -32,8 +32,8 @@ const defaultBookmarks = [
         bgImage: 'https://pic.imgdb.cn/item/62e67f7d8c61dc3b8e024fb7.jpg'
     },
     {
-        title: '统一影视TV',
-        url: 'https://www.tyys1.com/',
+        title: '红狐狸影院',
+        url: 'https://honghuli.com/',
         category: 'video',
         isDefault: true
     },
