@@ -224,7 +224,7 @@ function addBookmark() {
     
     const title = titleInput.value.trim();
     const url = urlInput.value.trim();
-    const bgImage = bgImageInput.value.trim();
+    const bgImage = bgImageInput ? bgImageInput.value.trim() : '';  // 添加空值检查
     const category = categoryInput.value;
 
     if (!title || !url || !category) {
@@ -358,8 +358,6 @@ function initCategories() {
 window.onload = function() {
     initCategories();  // 初始化分类
     loadBookmarks();   // 加载书签
-
-    document.getElementById('showAddForm').addEventListener('click', showModal);
 
     // 点击模态框外部关闭
     window.onclick = function(event) {
