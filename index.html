@@ -46,9 +46,9 @@
 
     <script>
         // 检查 UserAgent 是否包含 tesla
-        if (!navigator.userAgent.toLowerCase().includes('tesla')) {
-            window.location.href = './nav.html';
-        } else {
+        // if (!navigator.userAgent.toLowerCase().includes('tesla')) {
+        //     window.location.href = './nav.html';
+        // } else {
             document.getElementById('teslaLink').addEventListener('click', function(e) {
                 e.preventDefault();
                 const timestamp = Date.now();
@@ -59,7 +59,7 @@
                 const redirectUrl = `https://v.qq.com/search_redirect.html?url=https://www.1905.com/api/redirec.html?redirect_url=${targetUrl}?www.1905.com`;
                 window.location.href = redirectUrl;
             });
-        }
+        // }
     </script>
 </body>
 </html> 
